@@ -18,7 +18,7 @@ const BrandLogo = ({ isSoundOn }) => {
 
   return (
     <div
-      style={{ position: 'relative', display: 'inline-flex', alignItems: 'center' }}
+      style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', flexShrink: 0 }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -32,13 +32,14 @@ const BrandLogo = ({ isSoundOn }) => {
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '12px',
+          gap: '10px',
           textDecoration: 'none',
           color: '#fff',
           cursor: 'pointer',
           padding: '4px 6px',
           borderRadius: '12px',
           transition: 'all 0.3s ease',
+          flexShrink: 0,
         }}
       >
         {/* Animated PN Badge Container */}
@@ -47,6 +48,9 @@ const BrandLogo = ({ isSoundOn }) => {
             position: 'relative',
             width: '40px',
             height: '40px',
+            minWidth: '40px',
+            minHeight: '40px',
+            flexShrink: 0,
             borderRadius: '11px',
             padding: '2px',
             background: isHovered
@@ -147,6 +151,7 @@ const BrandLogo = ({ isSoundOn }) => {
             Pankaj Negi
           </div>
           <div
+            className="brand-subtitle"
             style={{
               fontSize: '0.68rem',
               color: isHovered ? '#d8b4fe' : '#64748b',
@@ -218,10 +223,10 @@ const BrandLogo = ({ isSoundOn }) => {
                 PN · INSIGNIA
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '3px' }}>
-                <span
-                  style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981' }}
-                  className="pulse-glow"
-                />
+                <span className="live-status-indicator" style={{ width: '8px', height: '8px' }}>
+                  <span className="live-status-ping" />
+                  <span className="live-status-dot" style={{ width: '6px', height: '6px' }} />
+                </span>
                 <span style={{ fontSize: '0.65rem', color: '#10b981', fontWeight: '600' }}>
                   Active Engineering Core
                 </span>

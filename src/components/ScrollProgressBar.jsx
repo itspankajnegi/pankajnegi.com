@@ -81,7 +81,7 @@ const ScrollProgressBar = () => {
         <div
           style={{
             position: 'absolute',
-            right: '-18px',
+            right: scrollProgress > 95 ? '2px' : '-12px',
             top: '-2px',
             display: 'flex',
             flexDirection: 'column',
@@ -100,7 +100,7 @@ const ScrollProgressBar = () => {
               position: 'absolute',
               top: '28px',
               left: '50%',
-              transform: `translateX(-50%) scaleX(${scrollDirection === 'up' ? -1 : 1})`,
+              transform: `translateX(${scrollProgress > 85 ? '-80%' : scrollProgress < 15 ? '-20%' : '-50%'}) scaleX(${scrollDirection === 'up' ? -1 : 1})`,
               background: 'rgba(9, 13, 24, 0.95)',
               border: '1px solid rgba(0, 242, 254, 0.4)',
               borderRadius: '20px',

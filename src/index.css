@@ -30,12 +30,17 @@
   box-sizing: border-box;
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+}
+
 html {
   scroll-behavior: smooth;
   font-family: var(--font-body);
   background-color: var(--bg-dark);
   color: var(--text-main);
-  overflow-x: hidden;
 }
 
 body {
@@ -261,6 +266,59 @@ h1, h2, h3, h4, h5, h6 {
   animation: pulseGlow 4s infinite ease-in-out;
 }
 
+/* Live Radar Pulse & Blink for Production Status */
+@keyframes statusPing {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.85;
+  }
+  70%, 100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@keyframes statusBlink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 12px #10b981, 0 0 4px #10b981;
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.92);
+    box-shadow: 0 0 4px #10b981;
+  }
+}
+
+.live-status-indicator {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.live-status-ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #10b981;
+  animation: statusPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+.live-status-dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #10b981;
+  animation: statusBlink 2s ease-in-out infinite;
+}
+
 @keyframes floatAnim {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
@@ -483,6 +541,9 @@ h1, h2, h3, h4, h5, h6 {
     padding: 12px 16px !important;
   }
   .nav-role-dropdown {
+    display: none !important;
+  }
+  .brand-subtitle {
     display: none !important;
   }
   .phone-mockup {

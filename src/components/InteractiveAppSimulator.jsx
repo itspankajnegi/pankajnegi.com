@@ -291,27 +291,33 @@ const InteractiveAppSimulator = ({ activeProject, setActiveProject }) => {
 
   useEffect(() => {
     if (svclThumbnailsRef.current) {
-      const activeEl = svclThumbnailsRef.current.children[activeSvclScreenshotIndex];
+      const container = svclThumbnailsRef.current;
+      const activeEl = container.children[activeSvclScreenshotIndex];
       if (activeEl) {
-        activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        const targetScrollLeft = activeEl.offsetLeft - (container.clientWidth / 2) + (activeEl.clientWidth / 2);
+        container.scrollTo({ left: targetScrollLeft, behavior: 'smooth' });
       }
     }
   }, [activeSvclScreenshotIndex]);
 
   useEffect(() => {
     if (astroThumbnailsRef.current) {
-      const activeEl = astroThumbnailsRef.current.children[activeScreenshotIndex];
+      const container = astroThumbnailsRef.current;
+      const activeEl = container.children[activeScreenshotIndex];
       if (activeEl) {
-        activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        const targetScrollLeft = activeEl.offsetLeft - (container.clientWidth / 2) + (activeEl.clientWidth / 2);
+        container.scrollTo({ left: targetScrollLeft, behavior: 'smooth' });
       }
     }
   }, [activeScreenshotIndex]);
 
   useEffect(() => {
     if (finncubThumbnailsRef.current) {
-      const activeEl = finncubThumbnailsRef.current.children[activeFinncubScreenshotIndex];
+      const container = finncubThumbnailsRef.current;
+      const activeEl = container.children[activeFinncubScreenshotIndex];
       if (activeEl) {
-        activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        const targetScrollLeft = activeEl.offsetLeft - (container.clientWidth / 2) + (activeEl.clientWidth / 2);
+        container.scrollTo({ left: targetScrollLeft, behavior: 'smooth' });
       }
     }
   }, [activeFinncubScreenshotIndex]);

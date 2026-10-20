@@ -28,6 +28,30 @@ const Footer = () => {
           </div>
         </div>
 
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
+          <a
+            href="https://www.linkedin.com/in/itspankajnegi"
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: '#cbd5e1', textDecoration: 'none', fontSize: '0.85rem', fontWeight: '600', transition: 'color 0.2s ease' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#4facfe')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = '#cbd5e1')}
+          >
+            LinkedIn
+          </a>
+          <span style={{ color: 'rgba(255, 255, 255, 0.2)' }}>•</span>
+          <a
+            href="https://github.com/itspankajnegi"
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: '#cbd5e1', textDecoration: 'none', fontSize: '0.85rem', fontWeight: '600', transition: 'color 0.2s ease' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#d8b4fe')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = '#cbd5e1')}
+          >
+            GitHub
+          </a>
+        </div>
+
         <div style={{ fontSize: '0.8rem', color: '#64748b', display: 'flex', alignItems: 'center', gap: '6px' }}>
           Crafted with <Code2 size={14} color="#00f2fe" /> React.js & Cyber Aesthetics
         </div>

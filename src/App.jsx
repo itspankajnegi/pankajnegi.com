@@ -18,7 +18,7 @@ function App() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   return (
-    <div style={{ position: 'relative', minHeight: '100vh', color: '#f8fafc' }} className="cyber-grid">
+    <div style={{ position: 'relative', minHeight: '100vh', width: '100%', overflowX: 'hidden', color: '#f8fafc' }} className="cyber-grid">
       {/* Funny Interactive Horizontal Scroll Progress Hand Mascot */}
       <ScrollProgressBar />
 

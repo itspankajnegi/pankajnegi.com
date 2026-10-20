@@ -246,7 +246,10 @@ const Hero = ({ positionMode, onOpenResume }) => {
 
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#10b981', boxShadow: '0 0 10px #10b981' }} />
+                  <div className="live-status-indicator">
+                    <span className="live-status-ping" />
+                    <span className="live-status-dot" />
+                  </div>
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: '#10b981', fontWeight: '600' }}>
                     PRODUCTION STATUS: ACTIVE
                   </span>

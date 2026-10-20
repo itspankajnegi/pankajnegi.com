@@ -12,9 +12,9 @@ const ResumeModal = ({ isOpen, onClose }) => {
 
   const handleCopyEmail = () => {
     playCyberClick();
-    navigator.clipboard.writeText('pankajnegi.dev@gmail.com');
+    navigator.clipboard.writeText('itspankajnegi@gmail.com');
     playSuccessChime();
-    alert('Email copied to clipboard!');
+    alert('Email copied to clipboard: itspankajnegi@gmail.com');
   };
 
   return (
@@ -27,94 +27,131 @@ const ResumeModal = ({ isOpen, onClose }) => {
         bottom: 0,
         background: 'rgba(7, 9, 19, 0.92)',
         backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
         zIndex: 200,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '24px',
-        overflowY: 'auto',
+        padding: '20px',
+        overflow: 'hidden',
+      }}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          playCyberClick();
+          onClose();
+        }
       }}
     >
       <div
         className="glass-panel resume-modal-dialog"
         style={{
           width: '100%',
-          maxWidth: '860px',
-          maxHeight: '90vh',
-          overflowY: 'auto',
-          padding: '40px',
+          maxWidth: '880px',
+          maxHeight: '92vh',
           borderRadius: '24px',
           position: 'relative',
           background: '#0d111d',
           border: '1px solid rgba(0, 242, 254, 0.3)',
-          boxShadow: '0 0 50px rgba(0, 242, 254, 0.2)'
+          boxShadow: '0 0 50px rgba(0, 242, 254, 0.2)',
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',
         }}
       >
-        {/* Close Button */}
-        <button
-          onClick={() => { playCyberClick(); onClose(); }}
+        {/* Fixed Header Bar (Buttons & Close Never Overlap or Scroll Away) */}
+        <div
           style={{
-            position: 'absolute',
-            top: '20px',
-            right: '20px',
-            background: 'rgba(255,255,255,0.08)',
-            border: 'none',
-            color: '#fff',
-            borderRadius: '50%',
-            width: '36px',
-            height: '36px',
+            padding: '20px 28px',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
             display: 'flex',
+            justifyContent: 'space-between',
             alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
+            flexWrap: 'wrap',
+            gap: '16px',
+            background: 'rgba(13, 17, 29, 0.98)',
+            zIndex: 10,
           }}
         >
-          <X size={20} />
-        </button>
-
-        {/* Modal Action Bar */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', marginBottom: '32px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '20px' }}>
           <div>
-            <span style={{ fontSize: '0.78rem', color: '#00f2fe', fontFamily: 'var(--font-mono)' }}>VERIFIED CURRICULUM VITAE</span>
-            <h3 style={{ fontSize: '1.5rem', fontWeight: '800', color: '#fff' }}>Pankaj Negi — Senior Engineer</h3>
+            <span style={{ fontSize: '0.75rem', color: '#00f2fe', fontFamily: 'var(--font-mono)', letterSpacing: '0.05em' }}>
+              VERIFIED CURRICULUM VITAE
+            </span>
+            <h3 style={{ fontSize: '1.35rem', fontWeight: '800', color: '#fff', margin: 0 }}>
+              Pankaj Negi — Senior Engineer
+            </h3>
           </div>
 
-          <div style={{ display: 'flex', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <button
               onClick={handlePrint}
               style={{
                 background: 'rgba(255,255,255,0.05)',
                 border: '1px solid rgba(255,255,255,0.15)',
                 color: '#fff',
-                padding: '8px 16px',
+                padding: '8px 14px',
                 borderRadius: '10px',
                 fontSize: '0.85rem',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px'
+                gap: '6px',
+                transition: 'all 0.2s ease',
               }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.1)')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.05)')}
             >
-              <Printer size={16} /> Print / PDF
+              <Printer size={15} /> Print / PDF
             </button>
 
             <button
               onClick={handleCopyEmail}
               className="btn-neon-primary"
-              style={{ padding: '8px 18px', fontSize: '0.85rem' }}
+              style={{ padding: '8px 16px', fontSize: '0.85rem' }}
             >
-              <Mail size={16} /> Copy Contact
+              <Mail size={15} /> Copy Email
+            </button>
+
+            <button
+              onClick={() => { playCyberClick(); onClose(); }}
+              aria-label="Close modal"
+              style={{
+                background: 'rgba(255,255,255,0.08)',
+                border: 'none',
+                color: '#fff',
+                borderRadius: '50%',
+                width: '36px',
+                height: '36px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                marginLeft: '6px',
+                transition: 'background 0.2s ease',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.18)')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.08)')}
+            >
+              <X size={18} />
             </button>
           </div>
         </div>
 
-        {/* Resume Document Body */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '28px', color: '#cbd5e1' }}>
-          
+        {/* Dedicated Scrollable Resume Body with Clean Padding & Non-Overlapping Scrollbar */}
+        <div
+          style={{
+            padding: '32px 36px 40px 36px',
+            overflowY: 'auto',
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '28px',
+            color: '#cbd5e1',
+          }}
+        >
           {/* Header Summary */}
           <div>
             <h1 style={{ fontSize: '2rem', fontWeight: '800', color: '#fff', marginBottom: '6px' }}>Pankaj Negi</h1>
-            <div style={{ fontSize: '1.1rem', color: '#00f2fe', fontWeight: '700', marginBottom: '12px' }}>
+            <div style={{ fontSize: '1.05rem', color: '#00f2fe', fontWeight: '700', marginBottom: '12px' }}>
               Senior React Native Developer & Frontend Engineer (4+ Years Experience)
             </div>
             <p style={{ fontSize: '0.95rem', lineHeight: '1.7', color: '#94a3b8' }}>
@@ -124,10 +161,10 @@ const ResumeModal = ({ isOpen, onClose }) => {
 
           {/* Technical Skills Categorized */}
           <div>
-            <h4 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#fff', borderBottom: '1px solid rgba(0,242,254,0.3)', paddingBottom: '8px', marginBottom: '12px' }}>
+            <h4 style={{ fontSize: '1.05rem', fontWeight: '700', color: '#fff', borderBottom: '1px solid rgba(0,242,254,0.3)', paddingBottom: '8px', marginBottom: '12px' }}>
               Core Technical Competencies
             </h4>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', fontSize: '0.88rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px', fontSize: '0.88rem' }}>
               <div><strong style={{ color: '#00f2fe' }}>Mobile:</strong> React Native, React Navigation, iOS & Android Native Bridges, Permissions</div>
               <div><strong style={{ color: '#4facfe' }}>Frontend:</strong> React.js, JavaScript (ES6+), Custom Hooks, Reusable UI Components</div>
               <div><strong style={{ color: '#7f00ff' }}>State & Data:</strong> Redux, MobX, React Query, REST APIs, Asynchronous JS</div>
@@ -139,13 +176,13 @@ const ResumeModal = ({ isOpen, onClose }) => {
 
           {/* Key Featured Projects & Impact */}
           <div>
-            <h4 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#fff', borderBottom: '1px solid rgba(0,242,254,0.3)', paddingBottom: '8px', marginBottom: '16px' }}>
+            <h4 style={{ fontSize: '1.05rem', fontWeight: '700', color: '#fff', borderBottom: '1px solid rgba(0,242,254,0.3)', paddingBottom: '8px', marginBottom: '16px' }}>
               Production Projects
             </h4>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <div style={{ background: 'rgba(255,255,255,0.02)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
+              <div style={{ background: 'rgba(255,255,255,0.02)', padding: '18px', borderRadius: '14px', border: '1px solid rgba(255,255,255,0.06)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', marginBottom: '6px' }}>
                   <strong style={{ color: '#fff', fontSize: '1rem' }}>AstroKarma — 3-Product Ecosystem Suite</strong>
                   <span style={{ fontSize: '0.75rem', color: '#10b981', fontFamily: 'var(--font-mono)' }}>Associated with 1.5M+ Downloads</span>
                 </div>
@@ -160,7 +197,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
                 </ul>
               </div>
 
-              <div style={{ background: 'rgba(255,255,255,0.02)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}>
+              <div style={{ background: 'rgba(255,255,255,0.02)', padding: '18px', borderRadius: '14px', border: '1px solid rgba(255,255,255,0.06)' }}>
                 <strong style={{ color: '#fff', fontSize: '1rem' }}>Finncub — Fintech Web Application</strong>
                 <div style={{ fontSize: '0.85rem', color: '#94a3b8', marginBottom: '8px' }}>React.js · JavaScript · REST API · High-Throughput Analytics</div>
                 <ul style={{ paddingLeft: '20px', fontSize: '0.88rem', color: '#cbd5e1', lineHeight: '1.6' }}>
@@ -169,7 +206,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
                 </ul>
               </div>
 
-              <div style={{ background: 'rgba(255,255,255,0.02)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}>
+              <div style={{ background: 'rgba(255,255,255,0.02)', padding: '18px', borderRadius: '14px', border: '1px solid rgba(255,255,255,0.06)' }}>
                 <strong style={{ color: '#fff', fontSize: '1rem' }}>SVCL Saarthi — Customer Loan & EMI Management App</strong>
                 <div style={{ fontSize: '0.85rem', color: '#94a3b8', marginBottom: '8px' }}>React Native · S V Creditline Limited (RBI-Registered NBFC) · OTP Auth · EMI Schedules</div>
                 <ul style={{ paddingLeft: '20px', fontSize: '0.88rem', color: '#cbd5e1', lineHeight: '1.6' }}>
@@ -180,9 +217,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
     </div>
   );

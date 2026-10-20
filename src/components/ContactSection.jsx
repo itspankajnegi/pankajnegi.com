@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Send, Terminal, CheckCircle2, Sparkles, MessageSquare, PhoneCall, Globe, Loader2, AlertCircle } from 'lucide-react';
+import { Mail, Send, Terminal, CheckCircle2, Sparkles, MessageSquare, PhoneCall, Globe, Loader2, AlertCircle, ChevronDown } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { playCyberClick, playSuccessChime } from '../utils/soundEffects';
 
@@ -17,8 +17,13 @@ const ContactSection = () => {
     playCyberClick();
     setIsSubmitting(true);
     setSubmitError(null);
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
-    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '679a2299-8890-464f-b113-eaf9ef9366dc';
+    if (!accessKey) {
+      setSubmitError('Form submission service not configured. Please contact directly at itspankajnegi@gmail.com.');
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
@@ -108,8 +113,13 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Official Email</div>
-                  <a href="mailto:itspankajnegi@gmail.com" style={{ color: '#fff', fontWeight: '700', textDecoration: 'none', fontSize: '1rem' }}>
-                    itspankajnegi@gmail.com
+                  <a
+                    href="mailto:itspankajnegi@gmail.com"
+                    style={{ color: '#fff', fontWeight: '700', textDecoration: 'none', fontSize: '1rem', wordBreak: 'break-word', transition: 'color 0.2s ease' }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = '#00f2fe')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = '#fff')}
+                  >
+                    itspankajnegi@gmail.com &rarr;
                   </a>
                 </div>
               </div>
@@ -121,8 +131,15 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Professional Network</div>
-                  <a href="https://www.linkedin.com/in/itspankajnegi" target="_blank" rel="noreferrer" style={{ color: '#fff', fontWeight: '700', textDecoration: 'none', fontSize: '1rem' }}>
-                    LinkedIn Profile &rarr;
+                  <a
+                    href="https://www.linkedin.com/in/itspankajnegi"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ color: '#fff', fontWeight: '700', textDecoration: 'none', fontSize: '1rem', wordBreak: 'break-word', transition: 'color 0.2s ease' }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = '#4facfe')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = '#fff')}
+                  >
+                    linkedin.com/in/itspankajnegi &rarr;
                   </a>
                 </div>
               </div>
@@ -134,8 +151,15 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Source Repositories</div>
-                  <a href="https://github.com" target="_blank" rel="noreferrer" style={{ color: '#fff', fontWeight: '700', textDecoration: 'none', fontSize: '1rem' }}>
-                    GitHub Profile &rarr;
+                  <a
+                    href="https://github.com/itspankajnegi"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ color: '#fff', fontWeight: '700', textDecoration: 'none', fontSize: '1rem', wordBreak: 'break-word', transition: 'color 0.2s ease' }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = '#d8b4fe')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = '#fff')}
+                  >
+                    github.com/itspankajnegi &rarr;
                   </a>
                 </div>
               </div>
@@ -206,25 +230,42 @@ const ContactSection = () => {
                   <label style={{ fontSize: '0.85rem', color: '#cbd5e1', display: 'block', marginBottom: '8px', fontWeight: '600' }}>
                     Role Focus Interest
                   </label>
-                  <select
-                    value={formData.role}
-                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                    style={{
-                      width: '100%',
-                      background: '#090d16',
-                      border: '1px solid rgba(255,255,255,0.1)',
-                      borderRadius: '12px',
-                      padding: '14px 16px',
-                      color: '#fff',
-                      fontSize: '0.95rem',
-                      outline: 'none'
-                    }}
-                  >
-                    <option value="Senior React Native Developer">Senior React Native Developer</option>
-                    <option value="Senior Frontend Engineer (React.js)">Senior Frontend Engineer (React.js)</option>
-                    <option value="Cross-Platform Mobile & Web Engineer">Cross-Platform Mobile & Web Engineer</option>
-                    <option value="Technical Consulting">Technical Consulting</option>
-                  </select>
+                  <div style={{ position: 'relative', width: '100%' }}>
+                    <select
+                      value={formData.role}
+                      onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                      style={{
+                        width: '100%',
+                        background: '#090d16',
+                        border: '1px solid rgba(255,255,255,0.1)',
+                        borderRadius: '12px',
+                        padding: '14px 44px 14px 16px',
+                        color: '#fff',
+                        fontSize: '0.95rem',
+                        outline: 'none',
+                        cursor: 'pointer',
+                        appearance: 'none',
+                        WebkitAppearance: 'none',
+                        MozAppearance: 'none',
+                      }}
+                    >
+                      <option value="Senior React Native Developer" style={{ background: '#0d111d', color: '#fff' }}>Senior React Native Developer</option>
+                      <option value="Senior Frontend Engineer (React.js)" style={{ background: '#0d111d', color: '#fff' }}>Senior Frontend Engineer (React.js)</option>
+                      <option value="Cross-Platform Mobile & Web Engineer" style={{ background: '#0d111d', color: '#fff' }}>Cross-Platform Mobile & Web Engineer</option>
+                      <option value="Technical Consulting" style={{ background: '#0d111d', color: '#fff' }}>Technical Consulting</option>
+                    </select>
+                    <ChevronDown
+                      size={18}
+                      color="#00f2fe"
+                      style={{
+                        position: 'absolute',
+                        right: '16px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        pointerEvents: 'none',
+                      }}
+                    />
+                  </div>
                 </div>
 
                 <div>
