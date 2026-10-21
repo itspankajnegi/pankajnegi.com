@@ -536,7 +536,7 @@ const InteractiveAppSimulator = ({ activeProject, setActiveProject }) => {
         </div>
 
         {/* Display Active Simulator Sandbox */}
-        <div className="glass-panel" style={{ padding: '32px', minHeight: '620px' }}>
+        <div className="glass-panel simulator-glass-panel" style={{ padding: '32px', minHeight: '620px' }}>
 
           {/* PROJECT 1: ASTROKARMA SUITE */}
           {currentApp === 'astrokarma' && (
@@ -819,10 +819,10 @@ const InteractiveAppSimulator = ({ activeProject, setActiveProject }) => {
             ) : (
               <div className="responsive-grid-simulator">
                 {/* Left Column: Official App Store Screenshot Phone Showcase */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+                <div className="screenshot-showcase-column" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', width: '100%', margin: '0 auto' }}>
                   
                   {/* Phone Showcase with Navigation Arrows */}
-                  <div style={{ position: 'relative' }}>
+                  <div style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center' }}>
                     <div
                       className="phone-mockup"
                       style={{
@@ -830,14 +830,15 @@ const InteractiveAppSimulator = ({ activeProject, setActiveProject }) => {
                         overflow: 'hidden',
                         boxShadow: '0 25px 60px rgba(0,0,0,0.85), 0 0 35px rgba(0, 242, 254, 0.3)',
                         display: 'flex',
-                        flexDirection: 'column'
+                        flexDirection: 'column',
+                        margin: '0 auto'
                       }}
                     >
                       {/* Top Speaker / Camera Bar */}
                       <div className="phone-notch" style={{ zIndex: 10 }} />
 
                       {/* Screenshot Image with fade transition */}
-                      <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden' }}>
+                      <div className="screenshot-skeleton-bg" style={{ width: '100%', height: '100%', flex: 1, position: 'relative', overflow: 'hidden' }}>
                         <img
                           src={astroScreenshots[activeScreenshotIndex].image}
                           alt={astroScreenshots[activeScreenshotIndex].title}
@@ -1165,7 +1166,7 @@ const InteractiveAppSimulator = ({ activeProject, setActiveProject }) => {
           {currentApp === 'finncub' && (
             viewMode === 'sandbox' ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
+                <div className="finncub-sandbox-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
                   <div>
                     <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(79,172,254,0.1)', border: '1px solid rgba(79,172,254,0.3)', padding: '4px 12px', borderRadius: '8px', color: '#4facfe', fontSize: '0.8rem', fontFamily: 'var(--font-mono)', marginBottom: '8px' }}>
                       FEATURED CASE STUDY #2
@@ -1175,8 +1176,8 @@ const InteractiveAppSimulator = ({ activeProject, setActiveProject }) => {
                     </h3>
                   </div>
 
-                  <div style={{ display: 'flex', gap: '12px' }}>
-                    <div style={{ background: '#090d16', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', padding: '4px', display: 'flex', gap: '4px' }}>
+                  <div className="finncub-filter-controls" style={{ display: 'flex', gap: '12px' }}>
+                    <div className="finncub-pill-group" style={{ background: '#090d16', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', padding: '4px', display: 'flex', gap: '4px' }}>
                       {['24h', '7d', '30d'].map((t) => (
                         <button
                           key={t}
@@ -1197,7 +1198,7 @@ const InteractiveAppSimulator = ({ activeProject, setActiveProject }) => {
                       ))}
                     </div>
 
-                    <div style={{ background: '#090d16', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', padding: '4px', display: 'flex', gap: '4px' }}>
+                    <div className="finncub-pill-group" style={{ background: '#090d16', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', padding: '4px', display: 'flex', gap: '4px' }}>
                       {['INR', 'USD', 'EUR'].map((c) => (
                         <button
                           key={c}
@@ -1314,10 +1315,10 @@ const InteractiveAppSimulator = ({ activeProject, setActiveProject }) => {
             ) : (
               <div className="responsive-grid-simulator">
                 {/* Left Column: Official Enterprise Platform Showcase */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+                <div className="screenshot-showcase-column" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', width: '100%', margin: '0 auto' }}>
                   
                   {/* Web Browser Showcase Frame with Navigation Arrows */}
-                  <div style={{ position: 'relative', width: '100%', maxWidth: '330px' }}>
+                  <div className="browser-mockup-frame" style={{ position: 'relative', width: '100%', maxWidth: '330px', margin: '0 auto' }}>
                     <div
                       style={{
                         position: 'relative',
@@ -1375,7 +1376,7 @@ const InteractiveAppSimulator = ({ activeProject, setActiveProject }) => {
                       </div>
 
                       {/* Screenshot Image with fade transition */}
-                      <div style={{ width: '100%', height: '480px', position: 'relative', overflow: 'hidden', background: '#05070f' }}>
+                      <div className="screenshot-skeleton-bg" style={{ width: '100%', height: '480px', position: 'relative', overflow: 'hidden', background: '#05070f' }}>
                         <img
                           src={finncubScreenshots[activeFinncubScreenshotIndex].image}
                           alt={finncubScreenshots[activeFinncubScreenshotIndex].title}
@@ -1875,10 +1876,10 @@ const InteractiveAppSimulator = ({ activeProject, setActiveProject }) => {
             ) : (
               <div className="responsive-grid-simulator">
                 {/* Left Column: Official App Store Screenshot Phone Showcase */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+                <div className="screenshot-showcase-column" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', width: '100%', margin: '0 auto' }}>
                   
                   {/* Phone Showcase with Navigation Arrows */}
-                  <div style={{ position: 'relative' }}>
+                  <div style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center' }}>
                     <div
                       className="phone-mockup"
                       style={{
@@ -1886,14 +1887,15 @@ const InteractiveAppSimulator = ({ activeProject, setActiveProject }) => {
                         overflow: 'hidden',
                         boxShadow: '0 25px 60px rgba(0,0,0,0.85), 0 0 35px rgba(16, 185, 129, 0.3)',
                         display: 'flex',
-                        flexDirection: 'column'
+                        flexDirection: 'column',
+                        margin: '0 auto'
                       }}
                     >
                       {/* Top Speaker / Camera Bar */}
                       <div className="phone-notch" style={{ zIndex: 10 }} />
 
                       {/* Screenshot Image with fade transition */}
-                      <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden' }}>
+                      <div className="screenshot-skeleton-bg" style={{ width: '100%', height: '100%', flex: 1, position: 'relative', overflow: 'hidden' }}>
                         <img
                           src={svclScreenshots[activeSvclScreenshotIndex].image}
                           alt={svclScreenshots[activeSvclScreenshotIndex].title}

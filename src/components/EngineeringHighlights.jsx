@@ -174,7 +174,7 @@ RCT_EXPORT_METHOD(authenticateUser:(NSString *)reason
         </div>
 
         {/* Highlight Cards Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', marginBottom: '50px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))', gap: '24px', marginBottom: '50px' }}>
           {highlights.map((h, i) => (
             <div
               key={i}
@@ -201,8 +201,8 @@ RCT_EXPORT_METHOD(authenticateUser:(NSString *)reason
         </div>
 
         {/* Live Code Workbench / Playground */}
-        <div className="glass-panel" style={{ padding: '28px', borderRadius: '20px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', marginBottom: '20px' }}>
+        <div className="glass-panel workbench-glass-panel" style={{ padding: '28px', borderRadius: '20px', maxWidth: '100%', minWidth: 0, boxSizing: 'border-box' }}>
+          <div className="workbench-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', marginBottom: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <Terminal size={20} color="#00f2fe" />
               <div>
@@ -212,16 +212,15 @@ RCT_EXPORT_METHOD(authenticateUser:(NSString *)reason
             </div>
 
             {/* Code Tabs */}
-            <div style={{ display: 'flex', gap: '8px', background: '#090d16', padding: '4px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <div className="workbench-tabs">
               <button
+                className="workbench-tab-btn"
                 onClick={() => { playCyberClick(); setActiveSnippetTab('chime'); }}
                 style={{
                   background: activeSnippetTab === 'chime' ? '#00f2fe' : 'transparent',
                   color: activeSnippetTab === 'chime' ? '#070913' : '#94a3b8',
                   border: 'none',
-                  padding: '6px 14px',
                   borderRadius: '8px',
-                  fontSize: '0.78rem',
                   fontWeight: '700',
                   cursor: 'pointer'
                 }}
@@ -229,14 +228,13 @@ RCT_EXPORT_METHOD(authenticateUser:(NSString *)reason
                 useRealtimeChimeCall.ts
               </button>
               <button
+                className="workbench-tab-btn"
                 onClick={() => { playCyberClick(); setActiveSnippetTab('socket'); }}
                 style={{
                   background: activeSnippetTab === 'socket' ? '#7f00ff' : 'transparent',
                   color: activeSnippetTab === 'socket' ? '#fff' : '#94a3b8',
                   border: 'none',
-                  padding: '6px 14px',
                   borderRadius: '8px',
-                  fontSize: '0.78rem',
                   fontWeight: '700',
                   cursor: 'pointer'
                 }}
@@ -244,14 +242,13 @@ RCT_EXPORT_METHOD(authenticateUser:(NSString *)reason
                 SocketChatQueue.js
               </button>
               <button
+                className="workbench-tab-btn"
                 onClick={() => { playCyberClick(); setActiveSnippetTab('bridge'); }}
                 style={{
                   background: activeSnippetTab === 'bridge' ? '#10b981' : 'transparent',
                   color: activeSnippetTab === 'bridge' ? '#070913' : '#94a3b8',
                   border: 'none',
-                  padding: '6px 14px',
                   borderRadius: '8px',
-                  fontSize: '0.78rem',
                   fontWeight: '700',
                   cursor: 'pointer'
                 }}
@@ -262,9 +259,9 @@ RCT_EXPORT_METHOD(authenticateUser:(NSString *)reason
           </div>
 
           {/* Terminal Block */}
-          <div className="cyber-terminal" style={{ position: 'relative' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '8px' }}>
-              <span style={{ color: '#00f2fe', fontSize: '0.78rem' }}>
+          <div className="cyber-terminal" style={{ position: 'relative', maxWidth: '100%', minWidth: 0, boxSizing: 'border-box' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '8px', gap: '8px' }}>
+              <span style={{ color: '#00f2fe', fontSize: '0.78rem', fontFamily: 'var(--font-mono)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 // {snippets[activeSnippetTab].lang}
               </span>
               <button
@@ -279,7 +276,8 @@ RCT_EXPORT_METHOD(authenticateUser:(NSString *)reason
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '4px'
+                  gap: '4px',
+                  flexShrink: 0
                 }}
               >
                 {copied ? <Check size={12} color="#10b981" /> : <Copy size={12} />}
@@ -287,7 +285,7 @@ RCT_EXPORT_METHOD(authenticateUser:(NSString *)reason
               </button>
             </div>
 
-            <pre style={{ overflowX: 'auto', lineHeight: '1.5', tabSize: 2 }}>
+            <pre style={{ overflowX: 'auto', lineHeight: '1.5', tabSize: 2, maxWidth: '100%', minWidth: 0, margin: 0, WebkitOverflowScrolling: 'touch' }}>
               <code>{snippets[activeSnippetTab].code}</code>
             </pre>
           </div>

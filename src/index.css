@@ -352,7 +352,10 @@ h1, h2, h3, h4, h5, h6 {
 /* Mobile Frame Mockup Screen */
 .phone-mockup {
   width: 320px;
+  min-width: 320px;
   height: 620px;
+  min-height: 620px;
+  flex-shrink: 0;
   background: #0d1117;
   border: 10px solid #1f293d;
   border-radius: 44px;
@@ -361,6 +364,28 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Screenshot Skeleton Shimmer Background */
+@keyframes skeletonShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.screenshot-skeleton-bg {
+  background: linear-gradient(
+    90deg,
+    #0c101a 0%,
+    rgba(0, 242, 254, 0.08) 50%,
+    #0c101a 100%
+  );
+  background-size: 200% 100%;
+  animation: skeletonShimmer 2s infinite ease-in-out;
 }
 
 .phone-notch {
@@ -385,6 +410,28 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-mono);
   font-size: 0.85rem;
   color: #e2e8f0;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Production Code Workbench Tabs */
+.workbench-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: #090d16;
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 100%;
+}
+
+.workbench-tab-btn {
+  white-space: nowrap;
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  transition: all 0.2s ease;
 }
 
 /* Sound Wave Animation Visual */
@@ -497,6 +544,15 @@ h1, h2, h3, h4, h5, h6 {
   .responsive-grid-simulator {
     grid-template-columns: 1fr;
     gap: 28px;
+    justify-items: center;
+  }
+  .screenshot-showcase-column {
+    width: 100% !important;
+    max-width: 360px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
   }
   .responsive-grid-two-col {
     grid-template-columns: 1fr;
@@ -527,11 +583,41 @@ h1, h2, h3, h4, h5, h6 {
   .arch-arrow {
     display: none !important;
   }
+  .simulator-glass-panel {
+    padding: 24px 16px !important;
+    border-radius: 20px !important;
+  }
   .phone-mockup {
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: 100% !important;
+    height: 580px !important;
+    min-height: 580px !important;
+    flex-shrink: 0 !important;
+    margin: 0 auto !important;
+  }
+  .browser-mockup-frame {
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: 100% !important;
+    flex-shrink: 0 !important;
+    margin: 0 auto !important;
+  }
+  .workbench-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+  }
+  .workbench-tabs {
     width: 100% !important;
-    max-width: 320px;
-    height: 600px;
-    margin: 0 auto;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+  .workbench-tab-btn {
+    flex: 1 1 auto;
+    text-align: center;
   }
 }
 
@@ -546,13 +632,77 @@ h1, h2, h3, h4, h5, h6 {
   .brand-subtitle {
     display: none !important;
   }
+  .simulator-glass-panel {
+    padding: 18px 12px !important;
+    border-radius: 16px !important;
+  }
   .phone-mockup {
     border-width: 6px;
     border-radius: 36px;
-    height: 560px;
+    width: 280px !important;
+    min-width: 280px !important;
+    max-width: 100% !important;
+    height: 540px !important;
+    min-height: 540px !important;
+    flex-shrink: 0 !important;
+    margin: 0 auto !important;
+  }
+  .browser-mockup-frame {
+    width: 280px !important;
+    min-width: 280px !important;
+    max-width: 100% !important;
+    flex-shrink: 0 !important;
+    margin: 0 auto !important;
+  }
+  .finncub-sandbox-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+  }
+  .finncub-filter-controls {
+    width: 100% !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+  .finncub-pill-group {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+  }
+  .finncub-pill-group button {
+    flex: 1 !important;
+    text-align: center !important;
+    padding: 6px 8px !important;
   }
   .resume-modal-dialog {
     padding: 24px 16px !important;
     border-radius: 18px !important;
+  }
+  .workbench-glass-panel {
+    padding: 18px 14px !important;
+    border-radius: 16px !important;
+  }
+  .workbench-tab-btn {
+    padding: 6px 10px !important;
+    font-size: 0.72rem !important;
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
+
+/* Ultra Small Viewports (<380px) */
+@media (max-width: 380px) {
+  .phone-mockup {
+    width: 255px !important;
+    min-width: 255px !important;
+    max-width: 100% !important;
+    height: 500px !important;
+    min-height: 500px !important;
+  }
+  .browser-mockup-frame {
+    width: 255px !important;
+    min-width: 255px !important;
+    max-width: 100% !important;
   }
 }
