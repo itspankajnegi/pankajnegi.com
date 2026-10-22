@@ -76,6 +76,16 @@ const Footer = () => {
           <ArrowUp size={20} />
         </button>
       </div>
+
+      {/* Global Legal Fair Use & Trademark Disclosure */}
+      <div style={{ maxWidth: '1280px', margin: '24px auto 0 auto', padding: '20px 24px 0 24px', borderTop: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <p style={{ margin: 0, fontSize: '0.72rem', color: '#64748b', lineHeight: '1.6' }}>
+          <strong style={{ color: '#94a3b8' }}>Legal Disclaimer:</strong> All company names, brand logos, product trademarks, and app store badges displayed on this website belong to their respective copyright holders. Projects, architectural case studies, and screenshots are presented strictly to illustrate professional engineering contributions and software development experience under nominative fair use. No direct endorsement, sponsorship, or company ownership is implied.
+        </p>
+        <div style={{ fontSize: '0.72rem', color: '#475569' }}>
+          &copy; {new Date().getFullYear()} Pankaj Negi. All rights reserved.
+        </div>
+      </div>
     </footer>
   );
 };

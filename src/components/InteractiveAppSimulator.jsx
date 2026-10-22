@@ -2223,6 +2223,28 @@ const InteractiveAppSimulator = ({ activeProject, setActiveProject }) => {
           )}
 
         </div>
+
+        {/* Fair Use & Demonstration Disclosure Banner */}
+        <div
+          style={{
+            marginTop: '20px',
+            padding: '12px 18px',
+            background: 'rgba(255, 255, 255, 0.02)',
+            border: '1px solid rgba(255, 255, 255, 0.06)',
+            borderRadius: '12px',
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: '10px',
+            fontSize: '0.74rem',
+            color: '#64748b',
+            lineHeight: '1.5'
+          }}
+        >
+          <Info size={16} color="#00f2fe" style={{ flexShrink: 0, marginTop: '2px' }} />
+          <div>
+            <strong style={{ color: '#94a3b8' }}>Fair Use & Portfolio Demonstration Notice:</strong> All product names, logos, app screenshots, and registered trademarks belong to their respective owners (Pushti Wellness, Eleven Tech Studio, SVCL). Media assets and store screenshots are showcased strictly for portfolio identification and professional engineering demonstration under nominative fair use. All interactive sandbox metrics and API logs are simulated to safeguard client privacy.
+          </div>
+        </div>
       </div>
     </section>
   );
